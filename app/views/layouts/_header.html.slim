@@ -16,8 +16,8 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
         a.nav-link[href="#"] Home 
         span.sr-only (current)
       li.nav-item = link_to '使い方', home_about_path, class:'nav-link'
-      li.nav-item = link_to '新規登録', '/#' ,class:'nav-link'
-      li.nav-item = link_to 'ログイン', '/#' ,class:'nav-link'
+      li.nav-item = link_to '新規登録', new_user_registration_path, class:'nav-link'
+      li.nav-item = link_to 'ログイン', new_user_session_path, class:'nav-link'
       li.nav-item.dropdown
         a#navbarDropdownMenuLink.nav-link.dropdown-toggle[
           href="#"
@@ -28,3 +28,4 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
         ] ユーザー
         .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
           = link_to 'プロフィール', '/#' ,class:'dropdown-item'
+          = link_to 'ログアウト', destroy_user_session_path, method: :delete ,class:'dropdown-item'

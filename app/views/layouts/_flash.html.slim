@@ -1,6 +1,6 @@
 - if notice
-  div.notice
+  .alert.alert-success[role="alert"]
     = flash[:notice]
 - elsif alert
-  div.alert
+  .alert.alert-danger[role='alert']
     = flash[:alert]
