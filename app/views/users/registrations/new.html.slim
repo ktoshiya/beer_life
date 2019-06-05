@@ -1,24 +1,43 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+.container
+  .row
+    .col-md-6.offset-md-3
+      .card
+        .card-header 新規登録
+        .card-body.form
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = render "users/shared/error_messages", resource: resource
+            .form-group
+              = f.label :name
+              = f.text_field :name,
+                  autofocus: true,
+                  autocomplete: "name",
+                  class: "form-control",
+                  placeholder: "へのへのもへじ"
+            .form-group
+              = f.label :email
+              = f.email_field :email,
+                  autofocus: true,
+                  autocomplete: "email",
+                  class: "form-control",
+                  placeholder: "name@example.com"
+            .form-group
+              = f.label :password
+              - if @minimum_password_length
+                  em
+                    | (
+                    = @minimum_password_length
+                    |  文字以上)
+              = f.password_field :password,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "Password"
+            .form-group
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "Password"
+            .actions
+              = f.submit "新規登録"
+
+
