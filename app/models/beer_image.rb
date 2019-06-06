@@ -1,3 +1,3 @@
 class BeerImage < ApplicationRecord
-  belong_to :beer
+  belongs_to :beer
 end

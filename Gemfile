@@ -22,6 +22,7 @@ gem 'devise-i18n-views'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -33,11 +34,10 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.6.0'
   gem 'capybara', '>= 2.15'
-  gem 'factory_girl_rails'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
