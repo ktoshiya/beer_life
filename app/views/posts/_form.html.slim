@@ -1,21 +1,28 @@
-= form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-      ul
-        - @post.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :amount
-    = f.number_field :amount
-  .field
-    = f.label :rating
-    = f.number_field :rating
-  .field
-    = f.label :drink_date
-    = f.date_select :drink_date
-  .actions = f.submit
+.container
+  .row
+    .col-md-6.offset-md-3
+      .card
+        .card-header フォーム
+        .card-body.form
+          = form_for @post do |f|
+            - if @post.errors.any?
+              #error_explanation
+                /h2
+                /= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+                ul
+                - @post.errors.full_messages.each do |message|
+                  li = message
+            .form-group
+              = f.label :beer_name
+              = f.text_field :beer_name, class: "form-control"
+            .form-group
+              = f.label :content
+              = f.text_area :content, class: "form-control"
+            .form-group
+              = f.label :count
+              = f.number_field :count, class: "form-control"
+            .form-group
+              = f.label :drink_date
+              br
+              = f.date_select :drink_date, {use_month_numbers: true}, { class: "form-control bootstrap-date" }
+            .actions = f.submit "投稿", class: "btn btn-primary"

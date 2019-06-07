@@ -5,6 +5,43 @@ header {
   margin-bottom: 10px;
 }
 
+.jumbotron {
+  margin: 30px;
+}
+
+.center {
+  text-align: center;
+}
+
 #error_explanation {
   color: red;
+}
+
+.mx-auto {
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.bootstrap-date {
+  display: inline-block;
+  width: auto;
+}
+
+.card {
+  margin: 10px;
+  padding: 0px;
+}
+
+.card-body.body {
+  height: 350px;
+}
+.card-body.btn {
+}
+
+.btn-form {
+  margin: 5px;
+  padding: 5px;
+  width: 80px;
+  display: inline-block;
+  float: center;
 }
