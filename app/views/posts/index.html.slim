@@ -25,6 +25,8 @@
             = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
             = link_to '削除', post, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-form btn-danger"
         end
-
+  .row
+    .col-md-6.offset-md-4
+      = paginate @posts
 
 = link_to 'New Post', new_post_path

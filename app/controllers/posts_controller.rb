@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = current_user.posts.order(created_at: :desc)
+    @posts = current_user.posts.order(created_at: :desc).page(params[:page]).per(6)
     @count = current_user.posts.sum(:count)
   end
 
