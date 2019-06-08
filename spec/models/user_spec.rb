@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  include CarrierWave::Test::Matchers
+
   before do
     user = expect(FactoryBot.build(:user)).to be_valid
   end
@@ -38,4 +40,26 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:password]).to include ("は6文字以上で入力してください")
   end
+
+  it "画像ファイルが有効" do
+    formats = %w(jpg jpeg gif png)
+    formats.each do |format|
+     image_path = File.join(Rails.root, "spec/fixtures/sample.#{format}")
+     user = FactoryBot.build(:user, image: File.open(image_path))
+     expect(user).to be_valid
+    end
+  end
+
+  it "画像ファイルが無効" do
+    image_path = File.join(Rails.root, "spec/fixtures/sample.rb")
+    user = FactoryBot.build(:user, image: File.open(image_path))
+    expect(user).not_to be_valid
+  end
+
+  it "リサイズがされていれば有効" do
+    image_path = File.join(Rails.root, "spec/fixtures/sample.jpg")
+    user = FactoryBot.create(:user, image: File.open(image_path))
+    expect(user.image).to be_no_larger_than(400, 400)
+  end
+
 end

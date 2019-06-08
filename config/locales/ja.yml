@@ -6,7 +6,7 @@ ja:
     attributes:
       post:
         beer_name: ビール名
-        content: コンテンツ
+        content: 感想
         count: 飲んだ量
         rating: 評価数
         drink_date: 飲んだ日 
