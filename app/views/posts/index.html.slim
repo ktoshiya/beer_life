@@ -1,19 +1,20 @@
-h1.center= "#{@user.name}さんの記録"
+h1.center
+  - if params[:q]
+    = "#{params[:q][:beer_name_or_content_cont]} の検索結果"
+  - else
+    | 最近の投稿
 
 .container
   .row
-    .col-md-6.offset-md-3.center
-      - if @user.image?
-        = image_tag @user.image.url, class:"user-img rounded-circle"
-      - else
-        = image_tag "/icon.jpeg", class:"user-img rounded-circle"
-      p = @user.name
-      p = "これまで飲んだ本数:#{@count}"
-      - if current_user == @user
-        = link_to "新規投稿", new_post_path, class: "btn btn-primary"
-    
+    .form-inline.mx-auto
+      = search_form_for @search, class: "mb-5" do |f|
+        .form-group.mx-sm-3.mb-2
+        = f.search_field :beer_name_or_content_cont, class: "form-control", placeholder:"キーワード検索", required: true
+        = f.submit "検索", class: "btn btn-primary"
+
+.container
   .row
-    - @posts.each do |post|
+    - @search_post.each do |post|
       .col-md-6.offset-md-3
         .card
           = image_tag post.picture.url, class:"bd-placeholder-img card-img-top" if post.picture?
@@ -22,11 +23,12 @@ h1.center= "#{@user.name}さんの記録"
             p.card-text = post.content
             p.card-text = "#{post.count}本"
             p.card-text = post.drink_date
+            = link_to post.user.name, post.user
           .card-body.btn
-            - if current_user == @user
+            - if current_user == post.user
               = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
               = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
 
   .row
     .mx-auto
-      = paginate @posts
+      = paginate @search_post

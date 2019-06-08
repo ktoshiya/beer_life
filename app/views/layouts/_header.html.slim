@@ -24,7 +24,8 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
             aria-expanded="false"
           ] ユーザー
           .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
-            = link_to "投稿一覧", user_path(current_user) ,class:"dropdown-item"
+            = link_to "#{current_user.name}さんの記録", user_path(current_user) ,class:"dropdown-item"
+            = link_to "最近のみんなの記録", posts_path ,class:"dropdown-item"
             = link_to "ユーザー一覧", users_path ,class:"dropdown-item"
             = link_to "プロフィール編集", edit_user_registration_path ,class:"dropdown-item"
             = link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"dropdown-item"

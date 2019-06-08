@@ -32,8 +32,13 @@
             .form-group
               span 写真
               .custom-file
-                = f.file_field :picture, accept: "image/jpeg,image/gif,image/png", class:"custom-file-input", id:"customFile"
-                = f.label :picture, class:"custom-file-label", for:"customFile"  
+                = f.file_field :image, accept: "image/jpeg,image/gif,image/png", class:"custom-file-input", id:"image"
+                = f.label :image, class:"custom-file-label", for:"image"
+            .form-group
+              - if @user.image?
+                = image_tag @user.image.url, class:"bd-placeholder-img card-img-top", id:"img_prev"
+              - else
+                img[class="bd-placeholder-img card-img-top", id="img_prev"]
             .actions
               = f.submit "更新", class: "btn btn-primary"
           br
@@ -50,3 +55,17 @@ javascript:
   $('.custom-file-input').on('change',function(){
     $(this).next('.custom-file-label').html($(this)[0].files[0].name);
   })
+  $(function() {
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#image").change(function(){
+    readURL(this);
+  });
+  });

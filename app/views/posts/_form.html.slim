@@ -28,9 +28,15 @@
               span 写真
               .custom-file
                 = f.file_field :picture, accept: 'image/jpeg,image', class:"custom-file-input", id:"picture"
-                = f.label :picture, class:"custom-file-label", for:"customFile"  
-              = image_tag @post.picture.url, class:"bd-placeholder-img card-img-top", id:"img_prev" if @post.picture?
-            .actions = f.submit "投稿", class: "btn btn-primary"
+                = f.label :picture, class:"custom-file-label", for:"customFile" 
+            .form-group
+              - if @post.picture?
+                = image_tag @post.picture.url, class:"bd-placeholder-img card-img-top", id:"img_prev"
+              - else
+                img[class="bd-placeholder-img card-img-top", id="img_prev"]
+
+            .form-group
+              .actions = f.submit "投稿", class: "btn btn-primary"
 
 javascript:
   $('#post_picture').bind('change', function() {

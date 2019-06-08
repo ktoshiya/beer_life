@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def index
+    @search = Post.ransack(params[:q])
+    @search.sorts = 'drink_date desc' if @search.sorts.empty?
+    @search_post = @search.result.page(params[:page])
+  end
+
   def new
     @post = Post.new
   end
