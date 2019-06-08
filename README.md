@@ -1,24 +1,33 @@
-# README
+# BeerLife
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ビール好きのための、写真共有サービスです。
 
-Things you may want to cover:
+<https://beerlife.herokuapp.com/>
 
-* Ruby version
+## デモアカウント
 
-* System dependencies
+```md
+メールアドレス:
+パスワード:
+```
+  
+## 機能と使用技術
 
-* Configuration
+- インフラ(Heroku)
+- 単体・統合テスト(RSpec, factory_bot, capybara)
+- データベース(PostgreSQ)
+- 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
+- ページネーション(kaminari)
+- アイテム情報取得(Amazon Product API, amazon-ecs)
+- 検索(ransack)
+- デザイン(Bootstrap) 
+- ログイン認証機能(devise)
+- （未実装）ユーザー関連（フォロー・フォロワー）
+- （未実装）いいね機能
 
-* Database creation
+## 環境
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 言語(Ruby 2.6.3)
+- フレームワーク(Rails 5.2.3) 
+- 開発(rbenv)
+- テキストエディタ(VScode)
