@@ -6,6 +6,8 @@ ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'faker'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -26,6 +28,10 @@ gem 'devise-i18n-views'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"
+end
+
+group :production do
+  gem 'fog', '1.42'
 end
 
 group :development do

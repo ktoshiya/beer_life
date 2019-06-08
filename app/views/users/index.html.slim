@@ -1,0 +1,7 @@
+.container
+  h1.center ユーザー一覧
+  .row
+    ul
+    - @users.each do |user|
+      li = link_to user.name, user
+    end

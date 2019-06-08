@@ -18,25 +18,20 @@ header {
   color: red;
 }
 
-.mx-auto {
-  width: 100%;
-  margin: 0 auto; 
-}
-
 .bootstrap-date {
   display: inline-block;
   width: auto;
 }
 
 .card {
-  margin: 10px;
+  max-width: 100%;
+  margin: 10px 50px;
   padding: 0px;
 }
 
-.card-body.body {
-  height: 350px;
-}
-.card-body.btn {
+.bd-placeholder-img.card-img-top {
+  width: 100%; 
+  height: auto;
 }
 
 .btn-form {
