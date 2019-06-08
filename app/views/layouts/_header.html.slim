@@ -12,22 +12,19 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
 
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav
-      li.nav-item.active
-        a.nav-link[href="#"] Home 
-        span.sr-only (current)
-      li.nav-item = link_to "使い方", home_about_path, class:"nav-link"
       li.nav-item = link_to "新規登録", new_user_registration_path, class:"nav-link"
       li.nav-item = link_to "ログイン", new_user_session_path, class:"nav-link"
-      li.nav-item.dropdown
-        a#navbarDropdownMenuLink.nav-link.dropdown-toggle[
-          href="#"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        ] ユーザー
-        .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
-          = link_to "投稿一覧", posts_path ,class:"dropdown-item"
-          = link_to "ユーザー一覧", "#" ,class:"dropdown-item"
-          = link_to "プロフィール編集", edit_user_registration_path ,class:"dropdown-item"
-          = link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"dropdown-item"
+      - if user_signed_in?
+        li.nav-item.dropdown
+          a#navbarDropdownMenuLink.nav-link.dropdown-toggle[
+            href="#"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          ] ユーザー
+          .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
+            = link_to "投稿一覧", user_path(current_user) ,class:"dropdown-item"
+            = link_to "ユーザー一覧", users_path ,class:"dropdown-item"
+            = link_to "プロフィール編集", edit_user_registration_path ,class:"dropdown-item"
+            = link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"dropdown-item"

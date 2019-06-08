@@ -1,26 +1,33 @@
+h1.center 投稿一覧
+
 .container
-  h1.center ユーザー画面
   .row
-    .center.mx-auto
-      = image_tag @user.image.url, class:"img-responsive" if @user.image?
+    .col-md-6.offset-md-3.center
+      - if @user.image?
+        = image_tag @user.image.url, class:"user-img rounded-circle"
+      - else
+        = image_tag "/icon.jpeg", class:"user-img rounded-circle"
+
       p = @user.name
-      p = "メールアドレス:#{@user.email}"
       p = "これまで飲んだ本数:#{@count}"
-- @posts.each do |post|
+      - if current_user == @user
+        = link_to "新規投稿", new_post_path, class: "btn btn-primary"
+    
   .row
-    .col-md-6.offset-md-4.mx-auto
-      .card
-        = image_tag post.picture.url, class:"bd-placeholder-img card-img-top" if post.picture?
-        .card-body.body
-          h5.card-title = post.beer_name
-          p.card-text = post.content
-          p.card-text = "#{post.count}本"
-          p.card-text = post.drink_date
-        - if current_user.id == post.user_id
+    - @posts.each do |post|
+      .col-md-6.offset-md-3
+        .card
+          = image_tag post.picture.url, class:"bd-placeholder-img card-img-top" if post.picture?
+          .card-body.body
+            h5.card-title = post.beer_name
+            p.card-text = post.content
+            p.card-text = "#{post.count}本"
+            p.card-text = post.drink_date
           .card-body.btn
-            = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
-            = link_to '削除', post, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-form btn-danger"
-        - else
-.row
-  .center.mx-auto
-    = paginate @posts
+            - if current_user == @user
+              = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
+              = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
+
+  .row
+    .mx-auto
+      = paginate @posts

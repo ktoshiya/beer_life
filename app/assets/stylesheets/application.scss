@@ -1,13 +1,21 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
-header {
-
-}
-
 .jumbotron {
-  margin: 0px;
-  padding: 50px;
+  background-image: url("beer.jpg");
+  background-size: cover;
+  background-position: center 60%;
+  container {
+    padding: 50px;
+  }
+  h1, p {
+    $shadow_color: #ffffff;
+    color: #000;
+    text-shadow:1px 1px 0 $shadow_color, -1px -1px 0 $shadow_color,
+                -1px 1px 0 $shadow_color, 1px -1px 0 $shadow_color,
+                0px 1px 0 $shadow_color,  0-1px 0 $shadow_color,
+                -1px 0 0 $shadow_color, 1px 0 0 $shadow_color;
+  }
 }
 
 .center {
@@ -24,14 +32,8 @@ header {
 }
 
 .card {
-  max-width: 100%;
   margin: 10px 50px;
   padding: 0px;
-}
-
-.bd-placeholder-img.card-img-top {
-  width: 100%; 
-  height: auto;
 }
 
 .btn-form {
@@ -40,4 +42,13 @@ header {
   width: 80px;
   display: inline-block;
   float: center;
+}
+
+.media {
+  margin: 10px;
+  padding: 10px;
+  .user-img {
+    width: 64px;
+    height: 64px;
+  }
 }

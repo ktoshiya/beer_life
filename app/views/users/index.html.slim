@@ -1,7 +1,12 @@
+h1.center ユーザー一覧
 .container
-  h1.center ユーザー一覧
-  .row
-    ul
-    - @users.each do |user|
-      li = link_to user.name, user
-    end
+  - @users.each do |user|
+    .row
+      .col-md-6.offset-md-4.mx-auto
+        .media.bg-light.shadow
+          - if user.image?
+            = image_tag user.image.url, class:"user-img rounded-circle"
+          - else
+            img[src="icon.jpeg" class= "user-img rounded-circle"]
+          .media-body
+            p = link_to user.name, user
