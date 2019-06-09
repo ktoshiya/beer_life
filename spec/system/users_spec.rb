@@ -1,60 +1,88 @@
 require "rails_helper"
 
-describe "ユーザー", type: :system do
-  before do
-    # ユーザーAを新規作成する
-  end
+describe "user", type: :system do
+  let!(:user) { FactoryBot.create(:user,
+    name: "ユーザーA",
+    email: "a@example.com",
+    password: "123456",
+  ) }
+  let!(:other_user) { FactoryBot.create(:user,
+    name: "ユーザーB",
+    email: "b@example.com",
+    password: "123456",
+  ) }
+  let!(:user_post) { FactoryBot.create(:post, user: user)}
+  let!(:other_user_post) { FactoryBot.create(:post, user: other_user)}
 
   context "新規登録" do
-    it "新規作成後、ユーザー詳細画面にリダイレクトする" do
+    it "新規登録ができること" do
+      expect {
+        visit new_user_registration_path
+        fill_in "名前", with: "としや"
+        fill_in "メールアドレス", with: "a@example.com"
+        fill_in "パスワード", with: "password"
+        fill_in "確認用パスワード", with: "password"
+        click_button "新規登録"
+      }.to change { User.count }.by(0)
     end
   end
 
-  context "ログイン" do
-    before do
-      #ユーザーAでログインする
-    end
-    it "ユーザー詳細画面が表示される" do
-
-    end
-  end
-
-  context "ユーザー編集機能" do
-    before do
-      #ユーザーAでログインする
-    end
-    it "成功後、ユーザー詳細画面がリダイレクトされ変更されている" do
-
-    end
-    it "ユーザー編集が失敗したときに元の画面にリダイレクト" do
-
-    end
-    it "他のユーザーの編集ページにはアクセスできない" do
-      
+  context "ログイン操作" do
+    it "ログイン後、ユーザー詳細画面が表示されること" do
+      visit new_user_session_path
+      fill_in "メールアドレス", with: user.email
+      fill_in "パスワード", with: user.password
+      click_button "ログイン"
+      expect(page).to have_content "ログインしました"
+      expect(page).to have_content "#{user.name}さんの記録"
     end
   end
 
-  context "ユーザー一覧機能" do
+  context "ログインしている場合" do
     before do
-      #ユーザーAでログインする
+      sign_in_as user
     end
-    it "ユーザーをクリックした時にユーザー詳細画面が表示される" do
-
+    it "ユーザー編集が有効であること" do
+      visit edit_user_registration_path
+      fill_in "名前", with: user.name
+      fill_in "メールアドレス", with: user.email
+      fill_in "パスワード", with: "password"
+      fill_in "確認用パスワード", with: "password"
+      fill_in "現在のパスワード", with: user.password
+      attach_file "user[image]", "#{Rails.root}/spec/fixtures/sample.jpg"
+      click_button "更新"
+      expect(page).to have_content "アカウント情報を変更しました"
+      expect(page).to have_content user.name
+    end
+    it "ユーザー一覧が表示されていること" do
+      visit users_path
+      expect(page).to have_content user.name
+      expect(page).to have_content other_user.name
+    end
+    it "ユーザー詳細画面が記事が表示されること" do
+      visit user_path(user)
+      expect(page).to have_content user.name
+      expect(page).to have_css ".card-body.btn"
+    end
+    it "他のユーザー詳細画面が表示されるとき、ボタンが表示されないこと" do
+      visit user_path(other_user)
+      expect(page).to have_content other_user.name
+      expect(page).to_not have_css ".card-body.btn"
     end
   end
 
-  context "ユーザー詳細機能" do
-    before do
-      #ユーザーAでログインする
+  context "ログインしていない場合" do
+    it "ユーザー詳細画面にアクセスできないこと" do
+      visit user_path(user)
+      expect(page).to have_content "アカウント登録もしくはログインしてください"
     end
-    it "記事が表示される" do
-
+    it "ユーザー詳細画面にアクセスできないこと" do
+      visit users_path
+      expect(page).to have_content "アカウント登録もしくはログインしてください"
     end
-    it "ログインユーザーの画面であればボタンが表示される" do
-
-    end
-    it "ログインユーザーの画面でなければボタンが表示されない" do
-
+    it "ユーザー編集画面にアクセスできないこと" do
+      visit edit_user_registration_path
+      expect(page).to have_content "アカウント登録もしくはログインしてください"
     end
   end
 end

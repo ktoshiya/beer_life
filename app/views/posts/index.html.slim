@@ -24,10 +24,10 @@ h1.center
             p.card-text = "#{post.count}本"
             p.card-text = post.drink_date
             = link_to post.user.name, post.user
-          .card-body.btn
-            - if current_user == post.user
-              = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
-              = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
+          - if current_user == post.user
+            .card-body.btn
+            = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
+            = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
 
   .row
     .mx-auto

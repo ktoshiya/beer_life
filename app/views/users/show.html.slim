@@ -22,8 +22,8 @@ h1.center= "#{@user.name}さんの記録"
             p.card-text = post.content
             p.card-text = "#{post.count}本"
             p.card-text = post.drink_date
-          .card-body.btn
-            - if current_user == @user
+          - if current_user == @user
+            .card-body.btn
               = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
               = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
 

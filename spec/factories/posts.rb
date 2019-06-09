@@ -3,8 +3,7 @@ FactoryBot.define do
     beer_name { "MyString" }
     content { "MyText" }
     count { 1 }
-    rating { 1 }
     drink_date { "2019-06-06" }
-    picture { "picture.jpg" }
+    picture { "sample.jpg" }
   end
 end
