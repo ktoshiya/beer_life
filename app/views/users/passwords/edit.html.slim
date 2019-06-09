@@ -1,22 +1,30 @@
-h2
-  | Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    br
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-      br
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    br
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Change my password"
-= render "users/shared/links"
+- provide(:title, "パスワードのリセット") 
+.container
+  h1.center = yield(:title)
+  .row
+    .col-md-6.offset-md-3
+      .card
+        .card-body.form
+          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+            = render "devise/shared/error_messages", resource: resource
+            = f.hidden_field :reset_password_token
+            .form-group
+              = f.label :password
+              - if @minimum_password_length
+                  em
+                    | (
+                    = @minimum_password_length
+                    |  文字以上)
+              = f.password_field :password,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "Password"
+            .form-group
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "Password"
+            .actions
+              = f.submit "パスワード変更", class: "btn btn-primary"
+            = render "users/shared/links"

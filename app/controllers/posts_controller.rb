@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @search = Post.ransack(params[:q])
-    @search.sorts = 'drink_date desc' if @search.sorts.empty?
+    @search.sorts = 'drink_date desc','updated_at desc' if @search.sorts.empty?
     @search_post = @search.result.page(params[:page])
   end
 

@@ -1,3 +1,6 @@
+- provide(:title, "プロフィール編集") 
+.container
+  h1.center = yield(:title)
 .container
   .row
     .col-md-6.offset-md-3
@@ -40,7 +43,7 @@
               = f.submit "更新", class: "btn btn-primary"
           br
           br
-          = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger"
+          = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか？" }, method: :delete, class: "btn btn-danger"
 
 javascript:
   $('#image').bind('change', function() {
@@ -49,20 +52,18 @@ javascript:
       alert('Maximum file size is 3MB. Please choose a smaller file.');
     }
   });
-  $('.custom-file-input').on('change',function(){
-    $(this).next('.custom-file-label').html($(this)[0].files[0].name);
-  })
+
   $(function() {
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#img_prev').attr('src', e.target.result);
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
       }
-      reader.readAsDataURL(input.files[0]);
     }
-  }
-  $("#image").change(function(){
-    readURL(this);
-  });
+    $("#image").change(function(){
+      readURL(this);
+    });
   });

@@ -1,6 +1,6 @@
-h1.center= "#{@user.name}さんの記録"
-
+- provide(:title, "#{@user.name}さんの記録") 
 .container
+  h1.center = yield(:title)
   .row
     .col-md-6.offset-md-3.center
       - if @user.image?

@@ -42,20 +42,18 @@ javascript:
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
   });
-  $('.custom-file-input').on('change',function(){
-    $(this).next('.custom-file-label').html($(this)[0].files[0].name);
-  })
+
   $(function() {
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#img_prev').attr('src', e.target.result);
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
       }
-      reader.readAsDataURL(input.files[0]);
     }
-  }
-  $("#picture").change(function(){
-    readURL(this);
-  });
+    $("#picture").change(function(){
+      readURL(this);
+    });
   });
