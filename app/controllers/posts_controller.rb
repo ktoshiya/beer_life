@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -50,13 +50,6 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-      if current_user.id != @post.user_id
-        redirect_to(:users)
-        flash[:alert] = "編集権限がありません。" 
-      end
-    end
 
     def post_params
       params.require(:post).permit(:beer_name, :content, :count, :drink_date, :user_id, :picture, :picture_cache, :remove_picture　)

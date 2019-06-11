@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     user_path(current_user)
   end
 
+  def correct_user
+    @post = Post.find(params[:id])
+    if current_user.id != @post.user_id
+      redirect_to(:users)
+      flash[:alert] = "編集権限がありません。"
+    end
+  end
+
   protected
 
     def configure_permitted_parameters

@@ -6,5 +6,11 @@ Rails.application.routes.draw do
     :registrations => "users/registrations",
     :passwords     => "users/passwords",
   }
-  resources :users, only: [:index, :show]
+  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only:[:create,:destroy]
 end

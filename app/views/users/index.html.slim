@@ -1,7 +1,7 @@
-- provide(:title, "ユーザー一覧") 
+- provide(:title, @title)
+
 .container
   h1.center = yield(:title)
-
   - @users.each do |user|
     .row
       .col-md-6.offset-md-4.mx-auto
@@ -9,6 +9,13 @@
           - if user.image?
             = image_tag user.image.url, class:"user-img rounded-circle"
           - else
-            img[src="icon.jpeg" class= "user-img rounded-circle"]
+            img[src="/icon.jpeg" class= "user-img rounded-circle"]
           .media-body
             p = link_to user.name, user
+          .media-body
+            - unless current_user == user
+              = render "follow_form", user: user
+  .row
+    .mx-auto
+      = paginate @users
+
