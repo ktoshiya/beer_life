@@ -7,8 +7,8 @@
 ## デモアカウント
 
 ```md
-メールアドレス:
-パスワード:
+メールアドレス:test@test.com
+パスワード:password
 ```
   
 ## 機能と使用技術
@@ -18,11 +18,10 @@
 - データベース(PostgreSQ)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
-- アイテム情報取得(Amazon Product API, amazon-ecs)
 - 検索(ransack)
 - デザイン(Bootstrap) 
 - ログイン認証機能(devise)
-- （未実装）ユーザー関連（フォロー・フォロワー）
+- ユーザー関連（フォロー・フォロワー）
 - （未実装）いいね機能
 
 ## 環境
