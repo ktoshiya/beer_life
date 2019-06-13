@@ -28,3 +28,6 @@
 
 # Ignore test_uploads file
 /spec/test_uploads
+
+# Ignore uploads file
+/public/uploads

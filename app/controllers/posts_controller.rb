@@ -3,9 +3,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @search = Post.ransack(params[:q])
-    @search.sorts = 'drink_date desc','updated_at desc' if @search.sorts.empty?
-    @search_post = @search.result.page(params[:page])
+    @q = Post.ransack(params[:q])
+    @q.sorts = 'drink_date desc','updated_at desc' if @q.sorts.empty?
+    @posts = @q.result.page(params[:page])
   end
 
   def new

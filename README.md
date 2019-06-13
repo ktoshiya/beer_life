@@ -15,18 +15,18 @@
 
 - インフラ(Heroku)
 - 単体・統合テスト(RSpec, factory_bot, capybara)
-- データベース(PostgreSQ)
+- データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
 - ページネーション(kaminari)
 - 検索(ransack)
-- デザイン(Bootstrap) 
+- デザイン(Bootstrap4) 
 - ログイン認証機能(devise)
 - ユーザー関連（フォロー・フォロワー）
-- （未実装）いいね機能
+- いいね機能
 
 ## 環境
 
 - 言語(Ruby 2.6.3)
 - フレームワーク(Rails 5.2.3) 
 - 開発(rbenv)
-- テキストエディタ(vim)
+- テキストエディタ(VScode,vim)

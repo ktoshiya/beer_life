@@ -73,8 +73,5 @@ describe "post", type: :system do
         expect(page).to_not have_content "サッポロビール"
       end
     end
-    context "ログインしていない場合はすべての投稿にアクセスできないこと" do
-
-    end
   end
 end

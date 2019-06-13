@@ -3,29 +3,14 @@ h1.center = posts_title
 .container
   .row
     .form-inline.mx-auto
-      = search_form_for @search, class: "mb-5" do |f|
+      = search_form_for @q, class: "mb-5" do |f|
         .form-group.mx-sm-3.mb-2
         = f.search_field :beer_name_or_content_cont, class: "form-control", placeholder:"キーワード検索", required: true
         = f.submit "検索", class: "btn btn-primary"
 
 .container
   .row
-    - @search_post.each do |post|
-      .col-md-6.offset-md-3
-        .card
-          = image_tag post.picture.url, class:"bd-placeholder-img card-img-top" if post.picture?
-          .card-body.body
-            h5.card-title = post.beer_name
-            p.card-text = post.content
-            p.card-text = "#{post.count}本"
-            p.card-text = post.drink_date
-            = link_to post.user.name, post.user
-          - if current_user == post.user
-            .card-body.btn
-              = link_to '編集', edit_post_path(post) , class: "btn btn-form btn-success"
-              = link_to '削除', post, data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-form btn-danger"
-          = render "likes/like", post: post
-
+    = render "posts/posts", posts: @posts
   .row
     .mx-auto
-      = paginate @search_post
+      = paginate @posts
