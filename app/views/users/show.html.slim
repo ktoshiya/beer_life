@@ -8,9 +8,12 @@
       - else
         = image_tag "/icon.jpeg", class:"user-img rounded-circle"
       p = @user.name
-      p = "これまで飲んだ本数:#{@count}"
-      = link_to "#{@user.following.count}フォロー", following_user_path(@user)
-      = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user)
+      p = "これまで飲んだ本数:#{@count}"  
+      #follows
+        = link_to "#{@user.following.count}フォロー", following_user_path(@user)
+      #followers
+        = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user)
+      
       .col-md-6.offset-md-3.center
       - if current_user == @user
         = link_to "新規投稿", new_post_path, class: "btn btn-primary" 

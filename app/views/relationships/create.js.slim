@@ -3,3 +3,7 @@
 | ").html("
 = escape_javascript(render("users/unfollow", user: @user)) 
 | ");
+
+| $("#followers").html('
+= link_to "#{@user.followers.count}フォロワー", followers_user_path(@user)
+| ');
