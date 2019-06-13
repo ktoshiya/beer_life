@@ -24,10 +24,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  
+  def destroy
+    if current_user.admin?
+      flash[:alert] = "テストユーザーは削除できません。"
+      redirect_to user_path(current_user)
+    else
+      super
+    end
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

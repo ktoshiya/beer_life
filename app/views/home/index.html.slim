@@ -6,3 +6,8 @@
     hr.my-4
     p 投稿するにはユーザー登録が必要です。
     = link_to "新規登録", new_user_registration_path, class:"btn btn-primary btn-lg", role: "button"
+    p
+    = form_for(@user, url: session_path(:user)) do |f|
+      = f.hidden_field :email, value: User.find(1).email
+      = f.hidden_field :password, value: "password"
+      = f.submit "テストユーザーでログイン", class:"btn btn-success"
