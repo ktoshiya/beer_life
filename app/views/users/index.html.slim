@@ -5,14 +5,14 @@
   - @users.each do |user|
     .row
       .col-md-6.offset-md-4.mx-auto
-        .media.bg-light.shadow
+        .media.bg-light.shadow.d-flex.align-items-center
           - if user.image?
             = image_tag user.image.url, class:"user-img rounded-circle"
           - else
             img[src="/icon.jpeg" class= "user-img rounded-circle"]
-          .media-body
+          .col
             p = link_to user.name, user
-          .media-body
+          .float-right
             - unless current_user == user
               = render "follow_form", user: user
   .row

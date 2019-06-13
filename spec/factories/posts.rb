@@ -5,5 +5,6 @@ FactoryBot.define do
     count { 1 }
     drink_date { "2019-06-06" }
     picture { "sample.jpg" }
+    user
   end
 end

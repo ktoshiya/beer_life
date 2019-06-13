@@ -1,35 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  let(:user_a) { FactoryBot.create(:user, name: "user_a") }
-  let(:user_b) { FactoryBot.create(:user, name: "user_b") }
+  let(:user) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@exmple.com') }
+  let(:other_user) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@exmple.com') }
   
-  it "フォローがあれば有効" do
-    relationship = Relationship.new(
-      follower_id: user_a.id,
-      followed_id: user_b.id
-    )
-    expect(relationship).to be_valid
-  end
-  it "フォローされていれば有効" do
-    relationship = Relationship.new(
-      follower_id: user_b.id,
-      followed_id: user_a.id
-    )
-    expect(relationship).to be_valid
-  end
-  it "フォローがなければ無効" do
-    relationship = Relationship.new(
-      follower_id: user_a.id,
-      followed_id: nil
-    )
-    expect(relationship).to_not be_valid
-  end
-  it "フォローがされていなければ無効" do
-    relationship = Relationship.new(
-      follower_id: nil,
-      followed_id: user_b.id
-    )
-    expect(relationship).to_not be_valid
+  context "relationship" do
+    it "フォローがあれば有効" do
+      relationship = Relationship.new(
+        follower_id: user.id,
+        followed_id: other_user.id
+      )
+      expect(relationship).to be_valid
+    end
+    it "フォローされていれば有効" do
+      relationship = Relationship.new(
+        follower_id: other_user.id,
+        followed_id: user.id
+      )
+      expect(relationship).to be_valid
+    end
+    it "フォローがなければ無効" do
+      relationship = Relationship.new(
+        follower_id: user.id,
+        followed_id: nil
+      )
+      expect(relationship).to_not be_valid
+    end
+    it "フォローがされていなければ無効" do
+      relationship = Relationship.new(
+        follower_id: nil,
+        followed_id: other_user.id
+      )
+      expect(relationship).to_not be_valid
+    end
   end
 end

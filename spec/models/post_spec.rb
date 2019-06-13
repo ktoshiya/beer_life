@@ -1,22 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-
-  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@exmple.com') }
-  let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@exmple.com') }
+  let(:user) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@exmple.com') }
 
   describe 'FactoryBotが有効であること' do
     it 'user_aが有効であること' do
-      expect(user_a).to be_valid
-    end
-    it 'user_bが有効であること' do
-      expect(user_b).to be_valid
+      expect(user).to be_valid
     end
   end
 
-  describe "postモデルが有効であること"
+  describe "postモデルが有効であること" do
     it "ビール名、コンテンツ、カウント、評価が有効であること" do
-      user = user_a
       post = user.posts.create(
         beer_name: "スーパードライ",
         content: "美味しかった！",
@@ -65,7 +59,5 @@ RSpec.describe Post, type: :model do
         expect(post.errors[:count]).to include "は一覧にありません"
       end
     end
-    it "飲んだ日は日付でなければ無効" do
-
-    end
+  end
 end
