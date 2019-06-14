@@ -31,7 +31,7 @@ describe "フォロー機能", type: :system do
         active_relationship
         visit users_path
         expect {
-          find("#follow_form_#{other_user.id}").click_button "フォロー解除"
+          find("#follow_form_#{other_user.id}").click_button "フォロー中"
           sleep 2
         }.to change(Relationship, :count).by(-1)
       end
@@ -39,7 +39,7 @@ describe "フォロー機能", type: :system do
         active_relationship
         visit following_user_path(user)
         expect {
-          find("#follow_form_#{other_user.id}").click_button "フォロー解除"
+          find("#follow_form_#{other_user.id}").click_button "フォロー中"
           sleep 2
         }.to change(Relationship, :count).by(-1)
       end
@@ -56,7 +56,7 @@ describe "フォロー機能", type: :system do
         passive_relationship
         visit followers_user_path(user)
         expect {
-          find("#follow_form_#{other_user.id}").click_button "フォロー解除"
+          find("#follow_form_#{other_user.id}").click_button "フォロー中"
           sleep 2
         }.to change(Relationship, :count).by(-1)
       end
@@ -77,7 +77,7 @@ describe "フォロー機能", type: :system do
         visit users_path
         expect(
           find("#follow_form_#{other_user.id}")
-        ).to_not have_content "フォロー", "フォロー解除"
+        ).to_not have_content "フォロー", "フォロー中"
       end
     end
   end

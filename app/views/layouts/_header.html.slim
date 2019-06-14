@@ -12,9 +12,10 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
 
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav
-      li.nav-item = link_to "新規登録", new_user_registration_path, class:"nav-link"
-      li.nav-item = link_to "ログイン", new_user_session_path, class:"nav-link"
-      - if user_signed_in?
+      - unless user_signed_in?
+        li.nav-item = link_to "新規登録", new_user_registration_path, class:"nav-link"
+        li.nav-item = link_to "ログイン", new_user_session_path, class:"nav-link"
+      - else
         li.nav-item.dropdown
           a#navbarDropdownMenuLink.nav-link.dropdown-toggle[
             href="#"
@@ -22,7 +23,7 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          ] ユーザー
+          ] メニュー 
           .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
             = link_to "#{current_user.name}さんの記録", user_path(current_user) ,class:"dropdown-item"
             = link_to "最近のみんなの記録", posts_path ,class:"dropdown-item"
