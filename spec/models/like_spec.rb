@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
@@ -6,11 +8,11 @@ RSpec.describe Like, type: :model do
   let(:other_user_post) { FactoryBot.create(:post, user: other_user) }
   let(:like) { FactoryBot.create(:like, user: user, post: other_user_post) }
 
-  it "いいねが有効であること" do
+  it 'いいねが有効であること' do
     expect(like).to be_valid
   end
-  it "いいね解除が有効であること" do
+  it 'いいね解除が有効であること' do
     like
-    expect{ like.destroy }.to change{ Like.count }.by(-1)
+    expect { like.destroy }.to change { Like.count }.by(-1)
   end
 end

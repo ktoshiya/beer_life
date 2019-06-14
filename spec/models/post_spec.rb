@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
@@ -9,54 +11,54 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe "postモデルが有効であること" do
-    it "ビール名、コンテンツ、カウント、評価が有効であること" do
+  describe 'postモデルが有効であること' do
+    it 'ビール名、コンテンツ、カウント、評価が有効であること' do
       post = user.posts.create(
-        beer_name: "スーパードライ",
-        content: "美味しかった！",
+        beer_name: 'スーパードライ',
+        content: '美味しかった！',
         count: 10,
         drink_date: '2010-10-11'
       )
     end
-    describe "ビール名" do
-      it "ビール名を50文字以上で無効" do
-        post = Post.create(beer_name: "a"* 51)
+    describe 'ビール名' do
+      it 'ビール名を50文字以上で無効' do
+        post = Post.create(beer_name: 'a' * 51)
         post.valid?
-        expect(post.errors[:beer_name]).to include "は50文字以内で入力してください"
+        expect(post.errors[:beer_name]).to include 'は50文字以内で入力してください'
       end
-      it "ビール名がなければ無効" do
+      it 'ビール名がなければ無効' do
         post = Post.create(beer_name: nil)
         post.valid?
-        expect(post.errors[:beer_name]).to include "を入力してください"
+        expect(post.errors[:beer_name]).to include 'を入力してください'
       end
     end
-    describe "コンテンツ" do
-      it "コンテンツは140文字以内で無効" do
-        post = Post.create(content: "a"* 141)
+    describe 'コンテンツ' do
+      it 'コンテンツは140文字以内で無効' do
+        post = Post.create(content: 'a' * 141)
         post.valid?
-        expect(post.errors[:content]).to include "は140文字以内で入力してください"
+        expect(post.errors[:content]).to include 'は140文字以内で入力してください'
       end
-      it "コンテンツがなければ無効" do
+      it 'コンテンツがなければ無効' do
         post = Post.create(content: nil)
         post.valid?
-        expect(post.errors[:content]).to include "を入力してください"
+        expect(post.errors[:content]).to include 'を入力してください'
       end
     end
-    describe "カウント" do
-      it "カウントは11以上で無効" do
+    describe 'カウント' do
+      it 'カウントは11以上で無効' do
         post = Post.create(count: 11)
         post.valid?
-        expect(post.errors[:count]).to include "は一覧にありません"
+        expect(post.errors[:count]).to include 'は一覧にありません'
       end
-      it "カウントがなければ無効" do
+      it 'カウントがなければ無効' do
         post = Post.create(count: nil)
         post.valid?
-        expect(post.errors[:count]).to include "を入力してください"
+        expect(post.errors[:count]).to include 'を入力してください'
       end
-      it "カウントが文字列ならば無効" do
-        post = Post.create(count: "１")
+      it 'カウントが文字列ならば無効' do
+        post = Post.create(count: '１')
         post.valid?
-        expect(post.errors[:count]).to include "は一覧にありません"
+        expect(post.errors[:count]).to include 'は一覧にありません'
       end
     end
   end

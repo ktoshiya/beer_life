@@ -24,10 +24,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  
   def destroy
     if current_user.admin?
-      flash[:alert] = "テストユーザーは削除できません。"
+      flash[:alert] = 'テストユーザーは削除できません。'
       redirect_to user_path(current_user)
     else
       super
@@ -65,7 +64,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   protected
-    def after_update_path_for(resource)
-      user_path(current_user)
-    end
+
+  def after_update_path_for(_resource)
+    user_path(current_user)
+  end
 end

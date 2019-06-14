@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
 
@@ -14,10 +16,11 @@ class RelationshipsController < ApplicationController
   end
 
   private
-    def respond_follow
-      respond_to do |format|
-        format.html
-        format.js
-      end
+
+  def respond_follow
+    respond_to do |format|
+      format.html
+      format.js
     end
+  end
 end

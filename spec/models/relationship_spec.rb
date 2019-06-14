@@ -1,32 +1,34 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
   let(:user) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@exmple.com') }
   let(:other_user) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@exmple.com') }
-  
-  context "relationship" do
-    it "フォローがあれば有効" do
+
+  context 'relationship' do
+    it 'フォローがあれば有効' do
       relationship = Relationship.new(
         follower_id: user.id,
         followed_id: other_user.id
       )
       expect(relationship).to be_valid
     end
-    it "フォローされていれば有効" do
+    it 'フォローされていれば有効' do
       relationship = Relationship.new(
         follower_id: other_user.id,
         followed_id: user.id
       )
       expect(relationship).to be_valid
     end
-    it "フォローがなければ無効" do
+    it 'フォローがなければ無効' do
       relationship = Relationship.new(
         follower_id: user.id,
         followed_id: nil
       )
       expect(relationship).to_not be_valid
     end
-    it "フォローがされていなければ無効" do
+    it 'フォローがされていなければ無効' do
       relationship = Relationship.new(
         follower_id: nil,
         followed_id: other_user.id

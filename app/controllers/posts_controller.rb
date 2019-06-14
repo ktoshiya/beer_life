@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: %i[edit update destroy]
   before_action :authenticate_user!
 
   def index
     @q = Post.ransack(params[:q])
-    @q.sorts = 'drink_date desc','updated_at desc' if @q.sorts.empty?
+    @q.sorts = 'drink_date desc', 'updated_at desc' if @q.sorts.empty?
     @posts = @q.result.page(params[:page])
   end
 
@@ -12,8 +14,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @post = current_user.posts.new(post_params)
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:post).permit(:beer_name, :content, :count, :drink_date, :user_id, :picture, :picture_cache, :remove_picture　)
-    end
+  def post_params
+    params.require(:post).permit(:beer_name, :content, :count, :drink_date, :user_id, :picture, :picture_cache, :remove_picture　)
+  end
 end
