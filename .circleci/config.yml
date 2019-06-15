@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  rspec:
+  build:
     docker:
       - image: circleci/ruby:2.6.0-node-browsers-legacy
         environment:
@@ -33,5 +33,5 @@ jobs:
 
 workflows:
   version: 2
-    jobs:
+    build:
       - rspec:
