@@ -19,11 +19,14 @@
               = f.text_area :content, class: "form-control", rows: 5
             .form-group
               = f.label :count
-              = f.select :count, options_for_select(1..5), {}, { class: "form-control" }
+              = f.select :count, (1..10).map{|i| ["#{i}本", i]}, {},class: "form-control"
             .form-group
               = f.label :drink_date
-              br
-              = f.date_select :drink_date, {use_month_numbers: true}, { class: "form-control bootstrap-date" }
+              .div[class="input-group date" id="datetimepicker4" data-target-input="nearest"]
+                = f.text_field :drink_date, class:"form-control datetimepicker-input", 'data-target':"#datetimepicker4"
+                .div[class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker"]
+                  .div[class="input-group-text"]
+                    .i[class="fa fa-calendar"]
             .form-group
               = f.label :picture
               - if @post.picture?
@@ -55,5 +58,11 @@ javascript:
     }
     $("#picture").change(function(){
       readURL(this);
+    });
+  });
+
+  $(function () {
+    $('#datetimepicker4').datetimepicker({
+      format: 'L'
     });
   });

@@ -19,7 +19,8 @@ describe 'post', type: :system do
       it '投稿できること' do
         fill_in 'ビール名', with: 'スーパードライ'
         fill_in '感想', with: '美味しい！'
-        select '1', from: '飲んだ量'
+        select '10本', from: '飲んだ量'
+        fill_in '飲んだ日', with: '2019/06/1'
         attach_file 'post[picture]', "#{Rails.root}/spec/fixtures/sample.jpg"
         click_button '投稿'
         expect(page).to have_content '投稿しました'
@@ -32,7 +33,8 @@ describe 'post', type: :system do
         click_on '編集'
         fill_in 'ビール名', with: 'サッポロビール'
         fill_in '感想', with: '美味しい！'
-        select '1', from: '飲んだ量'
+        select '1本', from: '飲んだ量'
+        fill_in '飲んだ日', with: '2019/06/1'
         attach_file 'post[picture]', "#{Rails.root}/spec/fixtures/sample.jpg"
         click_button '投稿'
         expect(page).to have_content '投稿を編集しました'

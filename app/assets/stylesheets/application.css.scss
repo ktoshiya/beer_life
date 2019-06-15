@@ -1,5 +1,8 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "font-awesome";
+@import "tempusdominus-bootstrap-4.css";
+
 
 .jumbotron {
   background-image: url("beer.jpg");

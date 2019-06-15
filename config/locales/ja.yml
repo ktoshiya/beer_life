@@ -1,5 +1,9 @@
 ---
 ja:
+  title:
+    base: BeerLife
+    sessions:
+      new: ログイン
   activerecord:
     models:
       post: 投稿
@@ -9,7 +13,8 @@ ja:
         content: 感想
         count: 飲んだ量
         rating: 評価数
-        drink_date: 飲んだ日 
+        drink_date: 飲んだ日
+        picture: 写真
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
