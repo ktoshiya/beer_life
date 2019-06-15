@@ -58,7 +58,7 @@ jobs:
       # Rspec
       - run:
           name: Rspec
-          command: bundle exec rspec
+          command: bundle exec rubocop | bash bin/diff_filter.sh
 
 workflows:
   version: 2
