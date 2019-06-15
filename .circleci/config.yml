@@ -3,8 +3,18 @@ jobs:
   build:
     machine:
       image: circleci/classic:edge
+      environment:
+        BUNDLER_VERSION: 2.0.1
     steps:
       - checkout
+      - run:
+          name: setup bundler
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
       - run:
           name: docker-compose build
           command: docker-compose build
