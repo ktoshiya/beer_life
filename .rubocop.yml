@@ -8,7 +8,7 @@ AllCops:
     - "db/migrate/*.rb"
     - "bin/*"
   DisplayCopNames: true
-  TargetRubyVersion: 2.6.0
+  TargetRubyVersion: 2.6.3
 
 Rails:
   Enabled: true
