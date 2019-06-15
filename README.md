@@ -29,4 +29,5 @@
 - 言語(Ruby 2.6.3)
 - フレームワーク(Rails 5.2.3) 
 - 開発(rbenv)
+- Docker
 - テキストエディタ(VScode,vim)
