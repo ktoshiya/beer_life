@@ -12,3 +12,5 @@ RUN gem install bundler
 RUN bundle install
 
 ADD .  /workspace/beer_life
+
+ENV DATABASE_HOST db
