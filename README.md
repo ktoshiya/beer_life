@@ -2,7 +2,7 @@
 
 ビール好きのための、写真共有サービスです。
 
-<https://beerlife.herokuapp.com/>
+<http://beerlife.info/>
 
 ## デモアカウント
 
@@ -13,7 +13,7 @@
   
 ## 機能と使用技術
 
-- インフラ(Heroku)
+- インフラ(AWS,EC2(Nginx,Unicorn),RDS)
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
@@ -30,4 +30,5 @@
 - フレームワーク(Rails 5.2.3) 
 - 開発(rbenv)
 - Docker
+- circleci
 - テキストエディタ(VScode,vim)
