@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order(drink_date: :desc).order(updated_at: :desc).page(params[:page]).per(6)
-    @count = @user.posts.sum(:count)
+    @post_count = @user.posts.count
+    @drink_count = @user.posts.sum(:count)
   end
 
   def following

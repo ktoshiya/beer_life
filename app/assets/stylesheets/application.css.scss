@@ -26,6 +26,14 @@
   }
 }
 
+h1 {
+  margin: 20px;
+}
+
+.row {
+  padding: 5px 0px;
+}
+
 .center {
   text-align: center;
 }
@@ -44,16 +52,8 @@
 }
 
 .card {
-  margin: 10px 10px;
+  margin: 5px 5px;
   padding: 0px;
-}
-
-.btn-form {
-  margin: 5px;
-  padding: 5px;
-  width: 80px;
-  display: inline-block;
-  float: center;
 }
 
 .media {

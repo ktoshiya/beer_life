@@ -8,16 +8,13 @@
       - else
         = image_tag "/icon.jpeg", class:"user-img rounded-circle"
       p = @user.name
-      p = "これまで飲んだ本数:#{@count}"  
-      #follows
-        = link_to "#{@user.following.count}フォロー", following_user_path(@user)
-      #followers
-        = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user)
-      
+      span = "投稿数:#{@post_count}件"
+      span.ml-3 = "飲んだ累計:#{@drink_count}本"  
       .col-md-6.offset-md-3.center
-      - if current_user == @user
-        = link_to "新規投稿", new_post_path, class: "btn btn-primary" 
-      - else
+        = link_to "#{@user.following.count}フォロー", following_user_path(@user)
+        = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user), class:"ml-3"
+      .col-md-6.offset-md-3.center
+      - unless current_user == @user
         = render "follow_form", user: @user
   .row
     = render "posts/posts", posts: @posts
