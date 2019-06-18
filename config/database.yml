@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
+  database: <%= ENV['RDS_NAME'] %>
   template: template0
   encoding: utf-8
   username: <%= ENV['RDS_USERNAME'] %>
