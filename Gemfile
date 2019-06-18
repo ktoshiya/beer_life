@@ -32,6 +32,7 @@ gem 'bootstrap4-datetime-picker-rails'
 gem 'momentjs-rails'
 gem 'font-awesome-rails'
 gem 'dotenv-rails'
+gem 'aws-ses'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

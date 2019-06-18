@@ -13,7 +13,7 @@
   
 ## 機能と使用技術
 
-- インフラ(AWS,EC2(Nginx,Unicorn),RDS)
+- インフラ(AWS,EC2(Nginx,Unicorn),RDS,Route53)
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(PostgreSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
@@ -23,6 +23,8 @@
 - ログイン認証機能(devise)
 - ユーザー関連（フォロー・フォロワー）
 - いいね機能
+- sass
+- slim
 
 ## 環境
 
