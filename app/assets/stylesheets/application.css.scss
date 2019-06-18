@@ -3,6 +3,11 @@
 @import "font-awesome";
 @import "tempusdominus-bootstrap-4.css";
 
+.navbar {
+  .btn {
+    margin: 2px;
+  }
+}
 
 .jumbotron {
   background-image: url("beer.jpg");

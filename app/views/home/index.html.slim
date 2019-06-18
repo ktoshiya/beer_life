@@ -6,9 +6,11 @@
     hr.my-4
     p 投稿するにはユーザー登録が必要です。
     .col-sm-6.mx-auto
-      = link_to "新規登録", new_user_registration_path, class:"btn btn-primary btn-lg btn-block", role: "button"
+      = link_to "新規登録", new_user_registration_path, class:"btn btn-success btn-lg btn-block", role: "button"
+      p
+      = link_to "ログイン", new_user_session_path, class:"btn btn-primary btn-lg btn-block", role: "button"
       p
       = form_for(@user, url: session_path(:user)) do |f|
         = f.hidden_field :email, value: "test@test.com"
         = f.hidden_field :password, value: "password"
-        = f.submit "テストユーザーでログイン", class:"btn btn-success btn-lg btn-block"
+        = f.submit "テストユーザーでログイン", class:"btn btn-info btn-lg btn-block"

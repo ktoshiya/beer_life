@@ -1,6 +1,6 @@
 header.navbar.navbar-expand-lg.navbar-light.bg-light
   = link_to BeerLife, root_path , class:"navbar-brand"
-
+  ul.navbar-nav
   button.navbar-toggler[
     type="button" data-toggle="collapse"
     data-target="#navbarNavDropdown"
@@ -11,22 +11,55 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
     span.navbar-toggler-icon
 
   #navbarNavDropdown.collapse.navbar-collapse
-    ul.navbar-nav
-      - unless user_signed_in?
-        li = link_to "新規登録", new_user_registration_path, class:"btn btn-success my-2 my-sm-0"
-        li.nav-item = link_to "ログイン", new_user_session_path, class:"nav-link"
-      - else
-        li.nav-item.dropdown
+    - unless user_signed_in?
+      ul.navbar-nav.mr-auto
+        li = link_to "新規登録", new_user_registration_path, class:"btn btn-success my-2 my-sm-1 btn-sm"
+        li = link_to "ログイン", new_user_session_path, class:"btn btn-outline-secondary my-2 my-sm-1 btn-sm"
+    - else
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          = link_to posts_path, class:"nav-link"
+            i.fas.fa-table.fa-lg.fa-fw
+            small 他ユーザー投稿
+        li.nav-item
+          = link_to users_path, class:"nav-link"
+            i.fa.fa-users.fa-lg.fa-fw
+            small ユーザー一覧
+
+        li.nav-item.dropdown          
           a#navbarDropdownMenuLink.nav-link.dropdown-toggle[
             href="#"
             role="button"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          ] メニュー 
+          ]
+            i.fas.fa-user.fa-lg.fa-fw
           .dropdown-menu[aria-labelledby="navbarDropdownMenuLink"]
-            = link_to "#{current_user.name}さんの記録", user_path(current_user) ,class:"dropdown-item"
-            = link_to "最近のみんなの記録", posts_path ,class:"dropdown-item"
-            = link_to "ユーザー一覧", users_path ,class:"dropdown-item"
-            = link_to "プロフィール編集", edit_user_registration_path ,class:"dropdown-item"
-            = link_to "ログアウト", destroy_user_session_path, method: :delete ,class:"dropdown-item"
+            .dropdown-item
+              i.fas.fa-beer.fa-lg.fa-fw
+              small = "飲んだ累計#{current_user.posts.sum(:count)}本"
+            .dropdown-divider
+            = link_to new_post_path, class:"dropdown-item"
+              i.fas.fa-edit.fa-lg.fa-fw
+              small 新規投稿
+            = link_to user_path(current_user), class:"dropdown-item"
+              i.fas.fa-table.fa-lg.fa-fw
+              small = "#{current_user.name}さんの記録"
+            = link_to edit_user_registration_path, class:"dropdown-item"
+              i.fas.fa-user-edit.fa-lg.fa-fw
+              small プロフィール編集
+            = link_to following_user_path(current_user), class:"dropdown-item"
+              i.fas.fa-user-friends.fa-lg.fa-fw
+              small フォロー
+              small.badge.badge-light = "#{current_user.following.count}"
+            = link_to followers_user_path(current_user), class:"dropdown-item"
+              i.fas.fa-user-friends.fa-lg.fa-fw
+              small フォロワー
+              small.badge.badge-light = "#{current_user.followers.count}"
+            = link_to destroy_user_session_path, method: :delete, class:"dropdown-item"
+              i.fas.fa-sign-out-alt.fa-lg.fa-fw
+              small ログアウト
+      = search_form_for @q, class: "form-inline my-2 my-lg-0" do |f|
+        = f.search_field :beer_name_or_content_cont, class: "form-control mr-sm-2", placeholder:"キーワード検索", "aria-label":"Search", required: true  
+        = f.button "検索", class: "btn btn-outline-success my-2 my-sm-0", type:"submit"
