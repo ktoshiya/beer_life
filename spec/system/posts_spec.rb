@@ -58,7 +58,7 @@ describe 'post', type: :system do
         visit user_path(other_user)
         expect(page).to have_content other_user.name
         expect(page).to have_content other_user_post.beer_name
-        expect(page).to_not have_css '.card-body.btn'
+        expect(page).to_not have_css '.card'
       end
     end
     context '投稿検索ができること' do
