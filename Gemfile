@@ -35,6 +35,8 @@ gem 'dotenv-rails'
 gem "aws-ses", "~> 0.6.0"
 gem 'mini_racer'
 
+gem 'rack-rewrite'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
