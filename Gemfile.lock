@@ -171,6 +171,7 @@ GEM
       rails
     kaminari-core (1.1.1)
     kgio (2.11.2)
+    libv8 (7.3.492.27.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -190,6 +191,8 @@ GEM
     mini_magick (4.7.0)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
+    mini_racer (0.2.6)
+      libv8 (>= 6.9.411)
     minitest (5.11.3)
     moment-timezone-rails (1.0.0)
       momentjs-rails (>= 2.10.5, <= 3.0.0)
@@ -381,6 +384,7 @@ DEPENDENCIES
   kaminari-bootstrap
   listen (>= 3.0.5, < 3.2)
   mini_magick (= 4.7.0)
+  mini_racer
   momentjs-rails
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
