@@ -66,12 +66,10 @@ describe 'user', type: :system do
     it 'ユーザー詳細画面が記事が表示されること' do
       visit user_path(user)
       expect(page).to have_content user.name
-      expect(page).to have_css 'card'
     end
-    it '他のユーザー詳細画面が表示されるとき、ボタンが表示されないこと' do
+    it '他のユーザー詳細画面が表示されること' do
       visit user_path(other_user)
       expect(page).to have_content other_user.name
-      expect(page).to_not have_css 'card'
     end
   end
 
