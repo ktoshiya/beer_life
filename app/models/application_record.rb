@@ -10,6 +10,6 @@ class ApplicationRecord < ActiveRecord::Base
       r301 %r{.*}, 'https://beer-life.info$&', :if => Proc.new { |rack_env|
         rack_env['SERVER_NAME'] != 'beer-life.info'
       }
+    end
   end
-end
 end
