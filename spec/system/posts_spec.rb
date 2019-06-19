@@ -50,7 +50,6 @@ describe 'post', type: :system do
         visit user_path(user)
         expect(page).to have_content user.name
         expect(page).to have_content user_post.beer_name
-        expect(page).to have_css 'card'
       end
     end
     context '他ユーザーの投稿一覧' do
@@ -58,7 +57,6 @@ describe 'post', type: :system do
         visit user_path(other_user)
         expect(page).to have_content other_user.name
         expect(page).to have_content other_user_post.beer_name
-        expect(page).to_not have_css 'card'
       end
     end
     context '投稿検索ができること' do
