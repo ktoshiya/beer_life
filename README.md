@@ -2,7 +2,7 @@
 
 ビール好きのための、写真共有サービスです。
 
-<https://beerlife.info/>
+<https://beer-life.info/>
 ※ELBを使用し、SSL化を行なっています。
 
 ## デモアカウント
