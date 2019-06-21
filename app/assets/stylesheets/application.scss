@@ -51,6 +51,12 @@ h1 {
   color: #ff1493;
 }
 
+.btn {
+  &:hover {
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+  }
+}
 .card {
   margin: 5px 5px;
   padding: 0px;
