@@ -70,8 +70,8 @@ describe 'フォロー機能', type: :system do
       end
       it 'ユーザーのフォロー、フォロワー数が表示されていること' do
         visit user_path(user)
-        expect(page).to have_content '1フォロー'
-        expect(page).to have_content '1フォロワー'
+        expect(page).to have_content 'フォロー1'
+        expect(page).to have_content 'フォロワー1'
       end
     end
     context '自身のフォローボタンが表示されていないこと' do
