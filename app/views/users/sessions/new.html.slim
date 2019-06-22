@@ -1,7 +1,6 @@
 - provide(:title, "ログイン") 
 .form-signin
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    img.mb-4[src="../images/bootstrap-solid.svg" alt="" width="72" height="72"]
     h1.h3.mb-3.font-weight-normal = yield(:title)
     = f.label :email, class:"sr-only", for:"inputEmail" 
     = f.email_field :email,
