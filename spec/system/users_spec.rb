@@ -38,7 +38,7 @@ describe 'user', type: :system do
       fill_in 'パスワード', with: user.password
       click_button 'ログイン'
       expect(page).to have_content 'ログインしました'
-      expect(page).to have_content "#{user.name}さんの記録"
+      expect(page).to have_content user.name
     end
   end
 
@@ -51,8 +51,8 @@ describe 'user', type: :system do
       fill_in '名前', with: user.name
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: 'password'
-      fill_in '確認用パスワード', with: 'password'
-      fill_in '現在のパスワード', with: user.password
+      #fill_in '確認用パスワード', with: 'password'
+      #fill_in '現在のパスワード', with: user.password
       attach_file 'user[image]', "#{Rails.root}/spec/fixtures/sample.jpg"
       click_button '更新'
       expect(page).to have_content 'アカウント情報を変更しました'
