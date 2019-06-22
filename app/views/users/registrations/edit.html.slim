@@ -1,50 +1,18 @@
 - provide(:title, "プロフィール編集") 
-.container
-  h1.center = yield(:title)
-.container
-  .row
-    .col-md-6.offset-md-3
-      .card
-        .card-header ユーザー編集
-        .card-body.form
-          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-            = render "devise/shared/error_messages", resource: resource
-            .form-group
-              = f.label :name
-              sapn.text-danger  ※
-              = f.text_field :name,autofocus: true,autocomplete: "name",class: "form-control"
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-            .form-group
-              = f.label :email
-              sapn.text-danger  ※
-              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-              div
-                | Currently waiting confirmation for: 
-                = resource.unconfirmed_email
-            .form-group
-              = f.label :password
-              = f.password_field :password, autocomplete: "new-password", class: "form-control"
-            .form-group
-              = f.label :password_confirmation
-              = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-            .form-group
-              = f.label :current_password
-              sapn.text-danger  ※
-              = f.password_field :current_password, autocomplete: "current-password", class: "form-control"
-            .form-group
-              = f.label :image
-              - if @user.image?
-                = image_tag @user.image.url, class:"bd-placeholder-img card-img-top", id:"img_prev"
-              - else
-                img[class="bd-placeholder-img card-img-top", id="img_prev"]
-              = f.file_field :image, accept: "image/jpeg,image/gif,image/png", class:"btn btn-default", id:"image"
-            .actions
-              = f.submit "更新", class: "btn btn-primary"
-          br
-          br
-          - unless current_user.admin?
-            = button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当にアカウントを削除しますか？" }, method: :delete, class: "btn btn-danger"
+h1.center = yield(:title)
+
+.p-3.col-md-6.offset-md-3
+  ul.nav.nav-tabs
+    li.nav-item
+      a.nav-link.active[href="#tab1" data-toggle="tab"] プロフィール編集
+    li.nav-item
+      a.nav-link[href="#tab2" data-toggle="tab"] パスワード変更
+
+.tab-content
+  #tab1.tab-pane.active
+    = render 'user_edit'
+  #tab2.tab-pane
+    = render 'password_edit'
 
 javascript:
   $('#image').bind('change', function() {

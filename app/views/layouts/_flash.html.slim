@@ -4,3 +4,6 @@
 - elsif alert
   .alert.alert-danger[role="alert"]
     = flash[:alert]
+- elsif flash[:warning]
+  .alert.alert-warning[role="alert"]
+    = flash[:warning]

@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @q.sorts = 'drink_date desc', 'updated_at desc' if @q.sorts.empty?
     @posts = @q.result.page(params[:page])
+    flash.now[:warning] = '検索結果がありませんでした。' if @posts.empty?
   end
 
   def new

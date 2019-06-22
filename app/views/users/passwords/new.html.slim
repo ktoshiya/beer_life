@@ -1,19 +1,19 @@
-- provide(:title, "パスワードのリセット") 
-.container
-  h1.center = yield(:title)
-  p.center ご登録いただいたメールアドレスを入力してください。
-  p.center メールアドレス宛に、パスワード変更ページのURLが記載されたメールを送信します。
-.container
-  .row
-    .col-md-6.offset-md-3
-      .card
-        .card-body.form
-          = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-            = render "devise/shared/error_messages", resource: resource
-            .form-group
-              = f.label :email
-              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-            .form-group
-              .actions
-                = f.submit "送信", class: "btn btn-primary"
-  = render "users/shared/links"
+- provide(:title, "パスワードリセット") 
+.form-signin
+  h1.h3.mb-3.font-weight-normal = yield(:title)
+  p ご登録いただいたメールアドレスを入力してください。パスワード変更ページのURLが記載されたメールを送信します。
+  = form_for(resource, as: resource_name,
+                      url: password_path(resource_name),
+                      html: { method: :post }) do |f|
+    = render "users/shared/error_messages", resource: resource
+    .form-group
+      = f.label :email
+      = f.email_field :email,
+                      id:"inputEmail",
+                      class:"form-control",
+                      placeholder:"beer@beer-life.com",
+                      autocomplete: "email"
+    .actions
+      = f.submit "送信", class: "btn btn-primary"
+
+    p.mt-3.mb-3.text-muted.center = render "users/shared/links"

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_search
   before_action :request_path
+  
 
   def after_sign_in_path_for(_resource)
     user_path(current_user)
@@ -29,10 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def request_path
-      @path = controller_path + '#' + action_name
-      def @path.is(*str)
-          str.map{|s| self.include?(s)}.include?(true)
-      end
+    @path = controller_path + '#' + action_name
+    def @path.is(*str)
+      str.map{|s| self.include?(s)}.include?(true)
+    end
   end
 
   protected

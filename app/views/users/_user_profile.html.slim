@@ -1,0 +1,9 @@
+.col-md-6.offset-md-3.center
+  - if user.image?
+    = image_tag user.image.url, class:"user-img rounded-circle"
+  - else
+    = image_tag "/icon.jpeg", class:"user-img rounded-circle"
+  p = user.name
+  p = "飲んだ累計:#{user.posts.sum(:count)}本"
+  - unless current_user == user
+    = render "follow_form", user: user

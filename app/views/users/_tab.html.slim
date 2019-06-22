@@ -1,0 +1,17 @@
+ul.nav.nav-tabs
+  li.nav-item
+    = link_to user_path(user, tab: 'posts'), class:"nav-link #{active?("posts")} #{active?(nil)}" do
+      small 投稿
+      span.badge.badge-light = user.posts.count
+  li.nav-item
+    = link_to user_path(user, tab: 'likes'), class:"nav-link #{active?("likes")}" do
+      small いいね
+      span.badge.badge-light = user.likes.count
+  li.nav-item
+    = link_to user_path(user, tab: 'following'), class:"nav-link #{active?("following")}" do
+      small フォロー
+      span.badge.badge-light = user.following.count
+  li.nav-item
+    = link_to user_path(user, tab: 'followers'), class:"nav-link #{active?("followers")}" do
+      small フォロワー
+      span.badge.badge-light = user.followers.count

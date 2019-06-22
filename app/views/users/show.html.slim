@@ -1,23 +1,25 @@
-- provide(:title, "#{@user.name}さんの記録") 
+- provide(:title, "#{@user.name}さん") 
 .container
-  h1.center = yield(:title)
   .row
-    .col-md-6.offset-md-3.center
-      - if @user.image?
-        = image_tag @user.image.url, class:"user-img rounded-circle"
-      - else
-        = image_tag "/icon.jpeg", class:"user-img rounded-circle"
-      p = @user.name
-      span = "投稿数:#{@post_count}件"
-      span.ml-3 = "飲んだ累計:#{@drink_count}本"  
-      .col-md-6.offset-md-3.center
-        = link_to "#{@user.following.count}フォロー", following_user_path(@user)
-        = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user), class:"ml-3"
-      .col-md-6.offset-md-3.center
-      - unless current_user == @user
-        = render "follow_form", user: @user
-  .row
+    = render 'user_profile', user: @user
+.container
+    = render 'tab', user: @user
+.container
+  - if params[:tab] == "posts" 
     = render "posts/posts", posts: @posts
-  .row
-    .mx-auto
-      = paginate @posts
+    - page = @posts
+  - elsif params[:tab] == "likes"
+    = render "posts/posts", posts: @likes
+    - page = @likes
+  - elsif params[:tab] == "following"
+    = render "users", users: @following
+    - page = @following
+  - elsif params[:tab] == "followers"
+    = render "users", users: @followers
+    - page = @followers
+  - else
+    = render "posts/posts", posts: @posts
+    - page = @posts.page.page(params[:page])
+.row
+  .mx-auto
+    = paginate page

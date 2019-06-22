@@ -50,11 +50,11 @@ header.navbar.navbar-expand-lg.navbar-light.bg-light
             = link_to edit_user_registration_path, class:"dropdown-item"
               i.fas.fa-user-edit.fa-lg.fa-fw
               small プロフィール編集
-            = link_to following_user_path(current_user), class:"dropdown-item"
+            = link_to user_path(current_user, tab: 'following'), class:"dropdown-item"
               i.fas.fa-user-friends.fa-lg.fa-fw
               small フォロー
               small.badge.badge-light = "#{current_user.following.count}"
-            = link_to followers_user_path(current_user), class:"dropdown-item"
+            = link_to user_path(current_user, tab: 'followers'), class:"dropdown-item"
               i.fas.fa-user-friends.fa-lg.fa-fw
               small フォロワー
               small.badge.badge-light = "#{current_user.followers.count}"

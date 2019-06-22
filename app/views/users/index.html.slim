@@ -1,20 +1,8 @@
 - provide(:title, @title)
+
 .container
   h1.center = yield(:title)
-  - @users.each do |user|
-    .row
-      .col-md-6.offset-md-4.mx-auto
-        .media.bg-light.shadow.d-flex.align-items-center
-          - if user.image?
-            = image_tag user.image.url, class:"user-img rounded-circle"
-          - else
-            img[src="/icon.jpeg" class= "user-img rounded-circle"]
-          .col
-            p = link_to user.name, user
-          .float-right
-            - unless current_user == user
-              = render "follow_form", user: user
-  .row
-    .mx-auto
-      = paginate @users
-
+  = render "users", users: @users
+.row
+  .mx-auto
+    = paginate @users
