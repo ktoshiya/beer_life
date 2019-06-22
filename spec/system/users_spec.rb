@@ -50,7 +50,7 @@ describe 'user', type: :system do
       visit edit_user_registration_path
       fill_in '名前', with: user.name
       fill_in 'メールアドレス', with: user.email
-      fill_in '現在のパスワード', with: user.password
+      fill_in 'パスワード', with: user.password
       attach_file 'user[image]', "#{Rails.root}/spec/fixtures/sample.jpg"
       click_button '更新'
       expect(page).to have_content 'アカウント情報を変更しました'
