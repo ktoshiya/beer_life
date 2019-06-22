@@ -38,8 +38,9 @@
                       accept:"image/jpeg,image/gif,image/png",
                       class:"btn btn-default",
                       id:"image"
-    .action
-      = f.submit "更新", class: "btn btn-primary"
+    .form-group
+      .action
+        = f.submit "更新", class: "btn btn-primary"
     .form-group
       - unless current_user.admin?
         = button_to "アカウント削除",
