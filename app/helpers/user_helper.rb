@@ -2,6 +2,6 @@
 
 module UserHelper
   def active?(tab_name)
-    "active" if tab_name == params[:tab]
+    'active' if tab_name == params[:tab]
   end
 end
