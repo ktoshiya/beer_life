@@ -1,7 +1,8 @@
 - provide(:title, posts_title) 
-h1.center = posts_title
 .container
-  = render "posts/posts", posts: @posts
-.row
-  .mx-auto
-    = paginate @posts
+  h1.center = posts_title
+  .row
+    = render "posts/posts", posts: @posts
+  .row
+    .mx-auto
+      = paginate @posts

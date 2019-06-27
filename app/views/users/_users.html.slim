@@ -1,13 +1,12 @@
-.row
-  - users.each do |user|
-    .col-md-6.offset-md-4.mx-auto
-      .media.bg-light.shadow.d-flex.align-items-center
-        - if user.image?
-          = image_tag user.image.url, class:"user-img rounded-circle"
-        - else
-          img[src="/icon.jpeg" class= "user-img rounded-circle"]
-        .col
-          p = link_to user.name, user
-        .float-right
-          - unless current_user == user
-            = render "follow_form", user: user
+- users.each do |user|
+  .col-md-6.offset-md-4.mx-auto
+    .media.bg-light.shadow.d-flex.align-items-center
+      - if user.image?
+        = image_tag user.image.url, class:"user-img rounded-circle"
+      - else
+        img[src="/icon.jpeg" class= "user-img rounded-circle"]
+      .col
+        p = link_to user.name, user
+      .float-right
+        - unless current_user == user
+          = render "follow_form", user: user

@@ -19,7 +19,7 @@ class RelationshipsController < ApplicationController
 
   def respond_follow
     respond_to do |format|
-      format.html
+      format.html  { redirect_to @user }
       format.js
     end
   end

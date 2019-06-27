@@ -9,10 +9,10 @@ html
     link[href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"]
     = javascript_include_tag "application", "data-turbolinks-track": "reload"
 
-
     meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
     
   body
+  .wrapper
     = render "layouts/header"
     = render "layouts/flash"
     = yield

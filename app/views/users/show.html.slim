@@ -2,24 +2,24 @@
 .container
   .row
     = render 'user_profile', user: @user
-.container
+  .row
     = render 'tab', user: @user
-.container
-  - if params[:tab] == "posts" 
-    = render "posts/posts", posts: @posts
-    - page = @posts
-  - elsif params[:tab] == "likes"
-    = render "posts/posts", posts: @likes
-    - page = @likes
-  - elsif params[:tab] == "following"
-    = render "users", users: @following
-    - page = @following
-  - elsif params[:tab] == "followers"
-    = render "users", users: @followers
-    - page = @followers
-  - else
-    = render "posts/posts", posts: @posts
-    - page = @posts.page.page(params[:page])
+  .row
+    - if params[:tab] == "posts" 
+      = render "posts/posts", posts: @posts
+      - page = @posts
+    - elsif params[:tab] == "likes"
+      = render "posts/posts", posts: @likes
+      - page = @likes
+    - elsif params[:tab] == "following"
+      = render "users", users: @following
+      - page = @following
+    - elsif params[:tab] == "followers"
+      = render "users", users: @followers
+      - page = @followers
+    - else
+      = render "posts/posts", posts: @posts
+      - page = @posts
 .row
   .mx-auto
     = paginate page

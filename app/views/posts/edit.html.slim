@@ -1,4 +1,5 @@
 - provide(:title, "投稿編集") 
 .container
   h1.center = yield(:title)
-== render 'form'
+  .row
+    == render 'form'
