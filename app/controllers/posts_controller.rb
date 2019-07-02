@@ -11,6 +11,12 @@ class PostsController < ApplicationController
     flash.now[:warning] = '検索結果がありませんでした。' if @posts.empty?
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = Comment.new
+  end
+
   def new
     @post = Post.new
   end
