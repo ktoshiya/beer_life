@@ -19,15 +19,10 @@
           p
             i.fas.fa-user-circle.fa-fw
             small = link_to @post.user.name, @post.user
-
-          - if current_user == @post.user
-            div.float-right
-              = link_to '編集', edit_post_path(@post), class:"btn btn-success btn-sm"
-          - else
-            = render "likes/like", post: @post
+          = render "likes/like", post: @post
   .row
     .col-md-8.offset-md-2
-      h5 コメント一覧 (#{@post.comments.count}件)
+      h5 コメント (#{@post.comments.count}件)
       - @comments.each do |comment|
         .card
           .media.d-flex.align-items-center
@@ -39,6 +34,9 @@
               p = link_to comment.user.name, comment.user
               p = comment.content
               small = comment.created_at.strftime("%Y年 %m月 %d日 %H:%M")
+            .float-right
+              - if current_user == comment.user
+                = link_to '削除', [@post,comment], data: { confirm: '本当に削除しますか？' }, method: :delete, class: "btn btn-danger ml-2"
   .row
     .col-md-8.offset-md-2
       = form_for [@post, @comment] do |f|

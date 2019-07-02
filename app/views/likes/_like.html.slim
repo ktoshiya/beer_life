@@ -1,13 +1,17 @@
-div.float-right[id="post_like_#{post.id}"]
-  - if current_user != post.user
-    - if post.like?(current_user)
-      = form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f|
-          = button_tag(class: "btn btn-default btn-xs") do
-            span.fas.fa-heart.fa-fw
-            = content_tag :span, "#{post.likes_count}"
-    - else
-      = form_for(post.likes.build, remote: true) do |f|
-          div = hidden_field_tag :post_id, post.id
-          = button_tag(class: "btn btn-default btn-xs") do
-            span.far.fa-heart.fa-fw
-            = content_tag :span, "#{post.likes_count}"
+.float-right[id="post_like_#{post.id}"]
+  = link_to post_path(post), class:"btn btn-default btn-xs"
+    span.fas.fa-comment.fa-fw
+    span = post.comments.count
+  - if post.like?(current_user)
+    = form_for(post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f|
+      = button_tag(class: "btn btn-default btn-xs") do
+        span.fas.fa-heart.fa-fw
+        = content_tag :span, "#{post.likes_count}"
+  - else
+    = form_for(post.likes.build, remote: true) do |f|
+      div = hidden_field_tag :post_id, post.id
+      = button_tag(class: "btn btn-default btn-xs") do
+        span.far.fa-heart.fa-fw
+        = content_tag :span, "#{post.likes_count}"
+- if current_user == post.user
+  = link_to '編集', edit_post_path(post), class:"btn btn-success btn-sm"

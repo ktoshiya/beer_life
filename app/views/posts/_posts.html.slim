@@ -17,8 +17,4 @@
           i.fas.fa-user-circle.fa-fw
           small = link_to post.user.name, post.user
 
-        - if current_user == post.user
-          div.float-right
-            = link_to '編集', edit_post_path(post), class:"btn btn-success btn-sm"
-        - else
-          = render "likes/like", post: post
+        = render "likes/like", post: post
