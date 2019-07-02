@@ -29,7 +29,7 @@ describe 'post', type: :system do
     end
     context '投稿編集' do
       it '投稿編集ができること' do
-        visit user_path(user)
+        visit post_path(user_post)
         click_on '編集'
         fill_in 'ビール名', with: 'サッポロビール'
         fill_in '感想', with: '美味しい！'
