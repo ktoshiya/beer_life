@@ -22,7 +22,6 @@
   - RDS for Postgresql
   - S3
   - SES
-
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(PostgreSQL)
 - 画像アップロード(Amason S3, CarrierWave, Mini_Magick, aws-fog)
