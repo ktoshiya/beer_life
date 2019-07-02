@@ -27,21 +27,24 @@
             = render "likes/like", post: @post
   .row
     .col-md-8.offset-md-2
-      h5 コメント一覧
+      h5 コメント一覧 (#{@post.comments.count}件)
       - @comments.each do |comment|
         .card
-            .col-md-6.offset-md-4.mx-auto
-              .media.bg-light.shadow.d-flex.align-items-center
-                - if comment.user.image?
-                  = image_tag comment.user.image.url, class:"user-img rounded-circle"
-                - else
-                  img[src="/icon.jpeg" class= "user-img rounded-circle"]
-                .col
-                  p = link_to comment.user.name, comment.user
+          .media.d-flex.align-items-center
+            - if comment.user.image?
+              = image_tag comment.user.image.url, class:"user-img rounded-circle"
+            - else
+              img[src="/icon.jpeg" class= "user-img rounded-circle"]
             .col
+              p = link_to comment.user.name, comment.user
               p = comment.content
+              small = comment.created_at.strftime("%Y年 %m月 %d日 %H:%M")
   .row
     .col-md-8.offset-md-2
       = form_for [@post, @comment] do |f|
-        = f.text_field :content, class:"form-control"
-        = f.submit 'コメントする', class:"btn btn-primary"
+        #error_explanation
+          - @comment.errors.full_messages.each do |message|
+            li = message
+        .form-inline
+          = f.text_field :content, class:"form-control col-sm-10", placeholder:"コメントは50文字以内"
+          = f.submit 'コメント', class:"btn btn-primary col-sm-2"

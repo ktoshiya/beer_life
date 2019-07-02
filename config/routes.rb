@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'likes/create'
   get 'likes/destroy'
   root to: 'home#index'
+  resources :posts
   resources :posts do
     resources :comments, only: [:create]
   end
