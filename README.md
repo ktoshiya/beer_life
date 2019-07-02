@@ -26,12 +26,13 @@
 - データベース(PostgreSQL)
 - 画像アップロード(Amason S3, CarrierWave, Mini_Magick, aws-fog)
 - ページネーション(kaminari)
-- 検索(ransack)
+- 記事検索(ransack)
 - デザイン(Bootstrap4, Font Awesome) 
 - ログイン認証機能(devise)
 - パスワードリセット機能
 - ユーザー関連（フォロー・フォロワー）
 - いいね機能
+- コメント機能
 - 退会機能
 
 ## 環境
