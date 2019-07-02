@@ -13,5 +13,3 @@
       = button_tag(class: "btn btn-default btn-xs") do
         span.far.fa-heart.fa-fw
         = content_tag :span, "#{post.likes_count}"
-- if current_user == post.user
-  = link_to '編集', edit_post_path(post), class:"btn btn-success btn-sm"
