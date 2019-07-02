@@ -41,6 +41,18 @@ describe 'post', type: :system do
         expect(page).to have_content 'サッポロビール'
       end
     end
+    context '投稿詳細' do
+      it '投稿詳細が表示されていること' do
+        visit post_path(user_post)
+        expect(page).to have_content user_post.beer_name
+      end
+      it 'コメントができること' do
+        visit post_path(user_post)
+        fill_in 'comment_content', with: '美味しいよね！'
+        click_button 'コメント'
+        expect(page).to have_content 'コメントしました。'
+      end
+    end
     context '投稿削除' do
       it '投稿削除ができること' do
       end

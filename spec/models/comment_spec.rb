@@ -19,14 +19,15 @@ RSpec.describe Comment, type: :model do
 
   describe 'commentモデルが有効であること' do
     it 'コンテンツが有効であること' do
-      comment = user.other_user_post.comments.create(comment: '美味しそう！')
+      comment = other_user_post.comments.create(content: '美味しそう！')
+      comment.user = user
       expect(comment).to be_valid
     end
     describe 'コメント' do
-      it 'コンテンツは140文字以内で無効' do
-        comment = Comment.create(content: 'a' * 141)
+      it 'コンテンツは50文字以内で無効' do
+        comment = Comment.create(content: 'a' * 51)
         comment.valid?
-        expect(comment.errors[:content]).to include 'は140文字以内で入力してください'
+        expect(comment.errors[:content]).to include 'は50文字以内で入力してください'
       end
       it 'コンテンツがなければ無効' do
         comment = Comment.create(content: nil)

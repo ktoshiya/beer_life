@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'フォロー機能', type: :system do
+describe 'follow', type: :system do
   let!(:user) { FactoryBot.create(:user, name: 'ユーザーA') }
   let!(:other_user) { FactoryBot.create(:user, name: 'ユーザーB') }
 
