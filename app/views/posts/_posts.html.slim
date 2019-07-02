@@ -6,7 +6,7 @@
       - else
         = image_tag "/nophoto.png", class:"bd-placeholder-img card-img-top"
       .card-body.body
-        h5.card-title = post.beer_name
+        h5 = link_to post.beer_name, post_path(post)
         p.card-text = post.content
         p
           i.fas.fa-beer.fa-fw

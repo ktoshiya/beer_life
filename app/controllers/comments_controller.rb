@@ -1,13 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    @comment.user = current_user
     if @comment.save
-      redirect_to post(@comment)
-      flash[:notice] = "コメントしました。"
+      redirect_to post_path(@post)
     else
-      redirect_to post(@comment)
-      flash[:danger] = @post.errors
+      render "posts/show"
     end
   end
 

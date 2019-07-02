@@ -1,0 +1,47 @@
+- provide(:title, "投稿詳細") 
+.container
+  h1.center = yield(:title)
+  .row
+    .col-md-8.offset-md-2
+      .card
+        - if @post.picture?
+          = image_tag @post.picture.url, class:"bd-placeholder-img card-img-top"
+        - else
+          = image_tag "/nophoto.png", class:"bd-placeholder-img card-img-top"
+        .card-body.body
+          h5.card-title = @post.beer_name
+          p.card-text = @post.content
+          p
+            i.fas.fa-beer.fa-fw
+            small = "#{@post.count}本  "
+            i.fas.fa-calendar-alt.fa-fw
+            small = @post.drink_date
+          p
+            i.fas.fa-user-circle.fa-fw
+            small = link_to @post.user.name, @post.user
+
+          - if current_user == @post.user
+            div.float-right
+              = link_to '編集', edit_post_path(@post), class:"btn btn-success btn-sm"
+          - else
+            = render "likes/like", post: @post
+  .row
+    .col-md-8.offset-md-2
+      h5 コメント一覧
+      - @comments.each do |comment|
+        .card
+            .col-md-6.offset-md-4.mx-auto
+              .media.bg-light.shadow.d-flex.align-items-center
+                - if comment.user.image?
+                  = image_tag comment.user.image.url, class:"user-img rounded-circle"
+                - else
+                  img[src="/icon.jpeg" class= "user-img rounded-circle"]
+                .col
+                  p = link_to comment.user.name, comment.user
+            .col
+              p = comment.content
+  .row
+    .col-md-8.offset-md-2
+      = form_for [@post, @comment] do |f|
+        = f.text_field :content, class:"form-control"
+        = f.submit 'コメントする', class:"btn btn-primary"

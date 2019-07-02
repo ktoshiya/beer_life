@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'likes/create'
   get 'likes/destroy'
   root to: 'home#index'
-  resources :posts, only: [:index, :show, :create] do
+  resources :posts do
     resources :comments, only: [:create]
   end
   devise_for :users, controllers: {
