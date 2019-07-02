@@ -21,8 +21,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @post = current_user.posts.new(post_params)
@@ -62,14 +61,14 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-                            :beer_name,
-                            :content,
-                            :count,
-                            :drink_date,
-                            :user_id,
-                            :picture,
-                            :picture_cache,
-                            :remove_picture
-                          )
+      :beer_name,
+      :content,
+      :count,
+      :drink_date,
+      :user_id,
+      :picture,
+      :picture_cache,
+      :remove_picture
+    )
   end
 end

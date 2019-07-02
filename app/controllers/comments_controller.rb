@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
@@ -6,22 +8,23 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      flash[:notice] = "コメントしました。"
+      flash[:notice] = 'コメントしました。'
       redirect_back(fallback_location: post_path(@post))
     else
       @comments = @post.comments.all.order(created_at: :desc)
-      render "posts/show"
+      render 'posts/show'
     end
   end
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
-    redirect_to  request.referrer || root_url
+    redirect_to  request.referer || root_url
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:content)
-    end
+
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
 end
