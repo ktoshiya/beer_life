@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   mount_uploader :picture, PictureUploader
   validates :beer_name, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 140 }
